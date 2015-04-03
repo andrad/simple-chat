@@ -9,3 +9,17 @@ br
   p
     = f.text_field :message
     = f.button
+
+
+javascript:
+  App = {
+    websocket_url: "ws://#{request.host}:#{request.port}/"
+  };
+
+  $(function() {
+    var user_id = "#{current_user.id}",
+        theme_id = "#{@theme.id}",
+        form = $('#new_message');
+
+    var messageSocket = new MessageSocket(user_id, theme_id, form);
+  });

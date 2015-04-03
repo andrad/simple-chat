@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require message_websocket
+//= require mustache.min
 //= require_tree .
