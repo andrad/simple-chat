@@ -17,10 +17,10 @@ MessageSocket.prototype.init = function() {
     });
 
     this.socket.onmessage = function(e) {
-        var tokens = e.data.split('\n');
+        var tokens = e.data.split("\n");
         switch(tokens[0]) {
             case 'messageok':
-                _this.messageOk();
+                _this.messageOk(tokens[1]);
                 break;
             case 'messagefail':
                 _this.messageFail(tokens[1]);
@@ -32,7 +32,7 @@ MessageSocket.prototype.init = function() {
 
 MessageSocket.prototype.sendMessage = function (value) {
     this.value = value;
-    var template = "message {{user_id}}, {{theme_id}}, {{value}}";
+    var template = "message\n{{user_id}}\n{{theme_id}}\n{{value}}";
     this.socket.send(Mustache.render(template, {
         user_id: this.user_id,
         theme_id: this.theme_id,
@@ -40,8 +40,9 @@ MessageSocket.prototype.sendMessage = function (value) {
     }));
 };
 
-MessageSocket.prototype.messageOk = function () {
-    console.log('OK: ' + this.value);
+MessageSocket.prototype.messageOk = function (value) {
+    console.log('OK: ' + value);
+    $('p.message:last').after(value);
 };
 
 MessageSocket.prototype.messageFail = function (value) {
