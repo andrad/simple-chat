@@ -1,0 +1,10 @@
+p#notice
+  = notice
+h1
+  | Listing Themes
+ul
+  - @themes.each do |theme|
+    li
+      = link_to theme.name, theme_path(theme)
+br
+= link_to 'New Theme', new_theme_path

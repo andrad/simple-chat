@@ -1,0 +1,11 @@
+h2 Messages
+- @theme.messages.each do |message|
+  p
+    strong
+      = "#{l message.created_at, format: :short} [#{message.user.email}]: "
+    = message.message
+br
+= form_for [@theme, Message.new] do |f|
+  p
+    = f.text_field :message
+    = f.button

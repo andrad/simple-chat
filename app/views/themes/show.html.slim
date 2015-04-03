@@ -1,0 +1,14 @@
+p#notice
+  = notice
+
+h1
+  = @theme.name
+p
+  strong
+
+- if current_user.id == @theme.user_id
+  = link_to 'Edit', edit_theme_path(@theme)
+  = " | "
+  = link_to 'Back', themes_path
+
+= render 'messages'

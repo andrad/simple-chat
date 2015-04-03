@@ -1,0 +1,19 @@
+nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to "Project name", "#", :class => "navbar-brand"
+    #navbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          = link_to 'Themes', themes_path
+      ul.nav.navbar-nav.navbar-right
+        - if current_user
+          p.navbar-text
+            = "You are signed in as #{current_user.email} "
+            = link_to 'Sign out', destroy_user_session_path, method: :delete
